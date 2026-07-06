@@ -30,34 +30,100 @@ features:
     module: src.data_processing.transform.order
     day_feature: order
     day_function: transform_order_by_day
-    function: transform_order_lxm
+    function: transform_order_avg_lxm
     day_prefix: clean/fts/order/day
     month_prefix: clean/fts/order/month_l3m
     input:
       months_window: 3
-      min_count: 10 # số đơn hàng thành công trung bình/tháng >= 10
-      min_value: 10000000 # tổng giá trị đơn hàng thành công trung bình tháng >= 10tr
 
   - name: order_l6m
     module: src.data_processing.transform.order
     day_feature: order
     day_function: transform_order_by_day
-    function: transform_order_lxm
+    function: transform_order_avg_lxm
     day_prefix: clean/fts/order/day
     month_prefix: clean/fts/order/month_l6m
     input:
       months_window: 6
-      min_count: 10 # số đơn hàng thành công trung bình/tháng >= 10
-      min_value: 10000000 # tổng giá trị đơn hàng thành công trung bình tháng >= 10tr
+
+  - name: order_avg_count_bin_l3m
+    module: src.data_processing.transform.order
+    day_feature: order
+    day_function: transform_order_by_day
+    function: transform_order_count_bin_lxm
+    day_prefix: clean/fts/order/day
+    month_prefix: clean/fts/order/avg_count_bin_l3m
+    input:
+      months_window: 3
+      n_bins: 20
+
+  - name: order_avg_value_bin_l3m
+    module: src.data_processing.transform.order
+    day_feature: order
+    day_function: transform_order_by_day
+    function: transform_order_value_bin_lxm
+    day_prefix: clean/fts/order/day
+    month_prefix: clean/fts/order/avg_value_bin_l3m
+    input:
+      months_window: 3
+      n_bins: 20
+
+  - name: order_sum_value_handy_l3m
+    module: src.data_processing.transform.order
+    day_feature: order
+    day_function: transform_order_by_day
+    function: transform_order_sum_handy_lxm
+    day_prefix: clean/fts/order/day
+    month_prefix: clean/fts/order/sum_value_handy_l3m
+    input:
+      months_window: 3
+
+  - name: order_value_decline_streak_l6m
+    module: src.data_processing.transform.order
+    day_feature: order
+    day_function: transform_order_by_day
+    function: transform_order_value_decline_streak_lxm
+    day_prefix: clean/fts/order/day
+    month_prefix: clean/fts/order/value_decline_streak_l6m
+    input:
+      months_window: 6
 
   - name: age_l12m
-    module: src.data_processing.transform.age
-    day_feature: age
-    day_function: transform_age_by_day
+    module: src.data_processing.transform.profile
+    day_feature: profile
+    day_function: transform_profile_by_day
     function: transform_age_lxm
-    day_prefix: clean/fts/age/day
-    month_prefix: clean/fts/age/month_l12m
+    day_prefix: clean/fts/profile/day
+    month_prefix: clean/fts/profile/age_l12m
     input:
       months_window: 12
-      min_age: 20
-      max_age: 50
+
+  - name: usage_l12m
+    module: src.data_processing.transform.profile
+    day_feature: profile
+    day_function: transform_profile_by_day
+    function: transform_usage_lxm
+    day_prefix: clean/fts/profile/day
+    month_prefix: clean/fts/profile/usage_l12m
+    input:
+      months_window: 12
+
+  - name: sale_region_l12m
+    module: src.data_processing.transform.profile
+    day_feature: profile
+    day_function: transform_profile_by_day
+    function: transform_sale_region_lxm
+    day_prefix: clean/fts/profile/day
+    month_prefix: clean/fts/profile/sale_region_l12m
+    input:
+      months_window: 12
+
+  - name: usage_duration_group_l12m
+    module: src.data_processing.transform.profile
+    day_feature: profile
+    day_function: transform_profile_by_day
+    function: transform_usage_duration_group_lxm
+    day_prefix: clean/fts/profile/day
+    month_prefix: clean/fts/profile/usage_duration_group_l12m
+    input:
+      months_window: 12
