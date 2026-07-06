@@ -88,6 +88,26 @@ features:
     input:
       months_window: 6
 
+  - name: order_gmv_l3m
+    module: src.data_processing.transform.gmv
+    day_feature: gmv
+    day_function: transform_gmv_by_day
+    function: transform_gmv_lxm
+    day_prefix: clean/fts/gmv/day
+    month_prefix: clean/fts/gmv/month_l3m
+    input:
+      months_window: 3
+
+  - name: order_gmv_l12m
+    module: src.data_processing.transform.gmv
+    day_feature: gmv
+    day_function: transform_gmv_by_day
+    function: transform_gmv_lxm
+    day_prefix: clean/fts/gmv/day
+    month_prefix: clean/fts/gmv/month_l12m
+    input:
+      months_window: 12
+
   - name: age_l12m
     module: src.data_processing.transform.profile
     day_feature: profile
