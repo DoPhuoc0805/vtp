@@ -1,6 +1,7 @@
 # Taste (Continuously Learned by [CommandCode][cmd])
 
 [cmd]: https://commandcode.ai/
+
 
 # architecture
 - Separate transform and filter phases: transform functions should only create feature columns without threshold/filter logic. Confidence: 0.75
