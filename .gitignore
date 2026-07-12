@@ -1,5 +1,6 @@
 .ipynb_checkpoints/
 .claude
+.commandcode
 
 ### asdf ###
 /.tool-versions
